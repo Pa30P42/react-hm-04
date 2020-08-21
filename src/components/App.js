@@ -4,6 +4,8 @@ import Home from "../pages/home/Home";
 import Movies from "../pages/movies/Movies";
 import Navigation from "./navigation/Navigation";
 import OneMovie from "../pages/movies/oneMovie/OneMovie";
+import Cast from "../pages/movies/oneMovie/Cast";
+import Review from "../pages/movies/oneMovie/Review";
 
 const App = () => (
   <>
@@ -17,10 +19,17 @@ const App = () => (
         <Route exact path="/" component={Home} />
         <Route path="/movies/:id" component={OneMovie} />
         <Route path="/movies" component={Movies} />
+        {/* <Route path="/movies/:id/cast" component={Review} /> */}
         {/* <Route
         path="/about"
         render={(props) => <About {...props} extraPropName="value" />}
       /> */}
+      </Switch>
+    </div>
+    <div>
+      <Switch>
+        <Route path="/movies/:id/cast" component={Cast} />
+        <Route path="/movies/:id/reviews" component={Review} />
       </Switch>
     </div>
   </>

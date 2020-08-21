@@ -19,7 +19,7 @@ class OneMovie extends Component {
       overview,
       backdrop_path,
     } = this.state.movieInfo;
-    console.log(this.props);
+
     return (
       <>
         <button type="button">Go back</button>
@@ -40,12 +40,10 @@ class OneMovie extends Component {
         <div>
           <ul>
             <li>
-              <Link to={`${this.props.location.pathname}/cast`}>Cast</Link>
+              <Link to={`${this.props.match.url}/cast`}>Cast</Link>
             </li>
             <li>
-              <Link to={`${this.props.location.pathname}/reviews`}>
-                Reviews
-              </Link>
+              <Link to={`${this.props.match.url}/reviews`}>Reviews</Link>
             </li>
           </ul>
         </div>
