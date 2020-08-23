@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 class MoviesList extends Component {
   render() {
-    const { trendingMovies } = this.props;
+    const { movies } = this.props;
     return (
       <>
-        {trendingMovies.map((movie) => (
+        {movies.map((movie) => (
           <li key={movie.id}>
             <Link id={movie.id} to={`/movies/${movie.id}`}>
               {movie.title}

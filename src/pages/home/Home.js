@@ -19,7 +19,7 @@ class Home extends Component {
       <>
         <h1>Trending today</h1>
         <ul>
-          <MoviesList trendingMovies={trendingMovies} />
+          <MoviesList movies={trendingMovies} />
           {/* {trendingMovies.map((movie) => (
             <li key={movie.id}>
               <Link to={`${this.props.match.url}/${movie.id}`}>
