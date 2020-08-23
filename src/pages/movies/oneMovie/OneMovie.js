@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../../../services/api";
 import { Link } from "react-router-dom";
+// import getQueryParams from "../../../services/qs";
 
 class OneMovie extends Component {
   state = {
@@ -12,6 +13,20 @@ class OneMovie extends Component {
       .getOneMovie(this.state.id)
       .then((res) => this.setState({ movieInfo: { ...res.data } }));
   }
+
+  // componentDidUpdate() {
+  //   console.log(this.props);
+  // const params = getQueryParams(this.props.location.search);
+  // const { query } = params;
+  // console.log(query);
+  // }
+
+  goBackFn = () => {
+    if (this.props.location.state && this.props.location.state.from) {
+      console.log("yes");
+      this.props.history.push(this.props.location.state.from.pathname);
+    }
+  };
   render() {
     const {
       original_title,
@@ -22,7 +37,9 @@ class OneMovie extends Component {
 
     return (
       <>
-        <button type="button">Go back</button>
+        <button type="button" onClick={this.goBackFn}>
+          Go back
+        </button>
         <div>
           {backdrop_path && (
             <img
@@ -40,7 +57,14 @@ class OneMovie extends Component {
         <div>
           <ul>
             <li>
-              <Link to={`${this.props.match.url}/cast`}>Cast</Link>
+              <Link
+                to={{
+                  pathname: `${this.props.match.url}/cast`,
+                  state: { from: this.props.location },
+                }}
+              >
+                Cast
+              </Link>
             </li>
             <li>
               <Link to={`${this.props.match.url}/reviews`}>Reviews</Link>
