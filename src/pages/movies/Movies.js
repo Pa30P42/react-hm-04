@@ -15,17 +15,28 @@ class Movies extends Component {
   //   console.log("query", query);
   // }
 
+  componentDidMount() {
+    const params = getQueryParams(this.props.location.search);
+    const { query } = params;
+    if (query) {
+      api
+        .getMovieByName(query)
+        .then((res) => this.setState({ queryMovies: res.data.results }));
+    }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     api
       .getMovieByName(this.state.query)
       .then((res) => this.setState({ queryMovies: res.data.results }));
-    console.log("this.props", this.props);
     this.props.history.push({
       pathname: this.props.location.pathname,
       search: `query=${this.state.query}`,
     });
     this.setState({ query: "" });
+    // console.log("after submit");
+    // console.log("this.props", this.props);
   };
   handleChange = (e) => {
     const { name, value } = e.target;

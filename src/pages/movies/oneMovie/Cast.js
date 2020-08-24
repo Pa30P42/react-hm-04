@@ -12,7 +12,7 @@ class Cast extends Component {
       .then((res) => this.setState({ cast: res.data.cast }));
   }
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { cast } = this.state;
     return (
       <>

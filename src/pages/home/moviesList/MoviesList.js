@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 
 class MoviesList extends Component {
   render() {
-    console.log("this.props", this.props);
+    // console.log("this.props", this.props);
     const { movies } = this.props;
     return (
       <>
@@ -13,6 +13,7 @@ class MoviesList extends Component {
               id={movie.id}
               to={{
                 pathname: `/movies/${movie.id}`,
+                // pathname: `${this.props.location.pathname}${this.props.location.search}/${movie.id}`,
                 state: { from: this.props.location },
               }}
             >

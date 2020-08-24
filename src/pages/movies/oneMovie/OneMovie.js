@@ -22,9 +22,14 @@ class OneMovie extends Component {
   // }
 
   goBackFn = () => {
+    // console.log(this.props);
     if (this.props.location.state && this.props.location.state.from) {
-      console.log("yes");
-      this.props.history.push(this.props.location.state.from.pathname);
+      // this.props.history.push(`${this.props.location.state.from.pathname}`);
+      this.props.history.push(
+        `${this.props.location.state.from.pathname}${this.props.location.state.from.search}`
+      );
+    } else {
+      this.props.history.push("/");
     }
   };
   render() {
@@ -67,7 +72,14 @@ class OneMovie extends Component {
               </Link>
             </li>
             <li>
-              <Link to={`${this.props.match.url}/reviews`}>Reviews</Link>
+              <Link
+                to={{
+                  pathname: `${this.props.match.url}/reviews`,
+                  state: { from: this.props.location },
+                }}
+              >
+                Reviews
+              </Link>
             </li>
           </ul>
         </div>
