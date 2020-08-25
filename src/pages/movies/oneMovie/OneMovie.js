@@ -7,8 +7,15 @@ class OneMovie extends Component {
   state = {
     id: this.props?.match.params?.id,
     movieInfo: {},
+    from: "",
+    search: "",
   };
   componentDidMount() {
+    this.props.location.state.from &&
+      this.setState({
+        from: this.props.location.state.from.pathname,
+        search: this.props.location.state.from.search,
+      });
     api
       .getOneMovie(this.state.id)
       .then((res) => this.setState({ movieInfo: { ...res.data } }));
@@ -26,7 +33,9 @@ class OneMovie extends Component {
     if (this.props.location.state && this.props.location.state.from) {
       // this.props.history.push(`${this.props.location.state.from.pathname}`);
       this.props.history.push(
-        `${this.props.location.state.from.pathname}${this.props.location.state.from.search}`
+        `${this.state.from}${this.state.search}`
+        // this.props.history.push(
+        //   `${this.props.location.state.from.pathname}${this.props.location.state.from.search}`
       );
     } else {
       this.props.history.push("/");
@@ -38,6 +47,7 @@ class OneMovie extends Component {
       vote_count,
       overview,
       backdrop_path,
+      poster_path,
     } = this.state.movieInfo;
 
     return (
@@ -48,7 +58,7 @@ class OneMovie extends Component {
         <div>
           {backdrop_path && (
             <img
-              src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+              src={`https://image.tmdb.org/t/p/original/${poster_path}`}
               alt="/"
               width="200"
             />
