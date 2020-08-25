@@ -43,10 +43,12 @@ const App = () => (
       </Suspense>
     </div>
     <div>
-      <Switch>
-        <Route path="/movies/:id/cast" component={Cast} />
-        <Route path="/movies/:id/reviews" component={Review} />
-      </Switch>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route path="/movies/:id/cast" component={Cast} />
+          <Route path="/movies/:id/reviews" component={Review} />
+        </Switch>
+      </Suspense>
     </div>
   </>
 );
