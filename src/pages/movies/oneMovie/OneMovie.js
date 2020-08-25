@@ -11,7 +11,7 @@ class OneMovie extends Component {
     search: "",
   };
   componentDidMount() {
-    this.props.location.state.from &&
+    this.props.location.state?.from &&
       this.setState({
         from: this.props.location.state.from.pathname,
         search: this.props.location.state.from.search,
@@ -75,7 +75,7 @@ class OneMovie extends Component {
               <Link
                 to={{
                   pathname: `${this.props.match.url}/cast`,
-                  state: { from: this.props.location },
+                  state: this.props.location.state,
                 }}
               >
                 Cast
@@ -85,7 +85,7 @@ class OneMovie extends Component {
               <Link
                 to={{
                   pathname: `${this.props.match.url}/reviews`,
-                  state: { from: this.props.location },
+                  state: this.props.location.state,
                 }}
               >
                 Reviews
